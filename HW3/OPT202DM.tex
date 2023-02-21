@@ -1,0 +1,104 @@
+\documentclass[12pt]{article}
+\usepackage{lipsum}
+\usepackage{amsmath}
+\usepackage{amsthm}
+
+\newtheoremstyle{mystyle}%                % Name
+  {}%                                     % Space above
+  {}%                                     % Space below
+  {\itshape}%                             % Body font
+  {}%                                     % Indent amount
+  {\bfseries}%                            % Theorem head font
+  {.}%                                    % Punctuation after theorem head
+  { }%                                    % Space after theorem head, ' ', or \newline
+  {}%                                     % Theorem head spec (can be left empty, meaning `normal')
+
+\theoremstyle{mystyle}
+\newtheorem{thm}[equation]{Theorem}
+\newtheorem{cor}[equation]{Corollary}
+\newtheorem{lemma}[equation]{Lemma}
+\newtheorem{prop}[equation]{Proposition}
+\newtheorem{conj}[equation]{Conjecture}
+\newtheorem{definition}[equation]{Definition}
+\newtheorem{remark}[equation]{Remark}
+\newtheorem{example}[equation]{Example}
+
+\usepackage{graphicx}
+\usepackage[margin=1in,footskip=0.25in]{geometry}
+\usepackage{hyperref}
+\usepackage[utf8]{inputenc}
+\title{OP202 HW3}
+\author{Yanyu ZHOU}
+\date{\today}
+
+\begin{document}
+\maketitle
+\section{Q1}
+Consider
+\begin{equation} \label{PC}
+\tag{$PC$} 
+    \min _{x \in X} f(x)
+\end{equation}
+\begin{center}
+    $\Updownarrow$
+\end{center}
+\begin{equation}
+    \tag{$\mathrm{PS}^{\prime}$}
+    \min _{x \in \mathbf{R}^n} f(x)+\iota_X(x)
+\end{equation}
+where $\iota_X(x)$ is a indicator function. When $x\in X$, $\iota_X(x) = 1$, else $\iota_X(x) = \infty$.
+
+\textbf{Proof:}$\partial \iota_X(x) \equiv N_X(x)$
+
+For \eqref{PC}, the necessary and sufficient conditions for optimality is
+$$
+\partial f\left(x^*\right)+N_X\left(x^*\right) \ni \mathbf{0}
+$$
+where $N_X(x)$ is the normal cone operator of $X$ at $x$. By definition, the \textit{normal cone} of a set $\mathbf{X}$ at a boundary point $x_0$ is the set of all vectors
+$y$ such that $y^T(x-x_0) \geq 0$ for all $x \in \mathbf{X}$.
+
+By definition, $\partial \iota_X(x) = \{g \in \mathbf{R}^n: g^Tx \geq g^Ty \quad \forall y\in \mathbf{X} \}$.
+Therefore, $\partial \iota_X(x) \equiv N_X(x)$.
+
+\section{Q2}
+Work out one of the proofs of Theorem 17 (the simplest one is $f_1 \in \mathbf{S}^{1,1}_{m,L}$).
+Here we prove that Theorem 12 in class 2 is also valid for the proximal gradient method. Referrence: CMU 10-725 Lecture 8.
+
+For $f(x) = f_1(x) + f_2(x)$, we assume that 
+\begin{itemize}
+    \item $f_1$ is convex and at least $f_1 \in \mathbf{S}^{1,1}_{0,L}$
+    \item $f_2$ is convex, $\operatorname{prox}_{\alpha h} (x)=\arg \min\limits_z\left\{\frac{\|x-z\|^2}{2 \alpha}+h(z)\right\}$ can be evaluated.
+\end{itemize}
+
+\textbf{Notation: }The update step of proximal gradient method can be written as
+$$x_k = x_{k-1} - t_kG_{t_k}(x_{k-1})$$ 
+where $G_t(x)$ is the generalized gradient and is given by 
+$$G_t(x)= \frac{x- \operatorname{prox}_t (x - t\nabla f_1(x))}{t}.$$
+
+Then the following holds:\\
+\textbf{Theorem:} The proximal gradient method with constant step size $\alpha \leq \frac{2}{L}$
+has an ergodic(global) convergence certificate of 
+$$
+f\left(\bar{x}_t\right)-f\left(x^*\right) \leq \frac{C}{t+1}\left\|x_0-x^*\right\|^2
+$$
+for $\bar{x}_t=\frac{1}{t+1} \sum_{k=0}^t x_k, \text { and } C>0$.
+
+\textbf{Proof:}
+We begin by showing that 
+$$f(y) \leq f_1(x) + \nabla g(x)^T(y-x) + \frac{L}{2}\left\|y-x\right\|^2 + f_2(y) \quad \forall x,y.$$
+Since $\nabla f_1$ is Lipschitz with constant L, $\nabla^2 f_1 $
+
+\textbf{Remark:} 
+\begin{itemize}
+    \item This has the same convergence rate $O(\frac{1}{t})$ as that of gradient descent.
+\end{itemize}
+
+\section{Q2}
+Depending on $f$, you can derive conditions for which the dual ascent is converging depending on $\alpha$ and $f$ you can have linear convergence, or $O(1 / t), O\left(1 / t^2\right), O(1 / \sqrt{t}) \ldots$
+
+\section{Q3}
+Homework. Can you think of a dual Newton’s method? Can you think of a
+dual proximal method? When would you apply these methods and with
+which guarantees?
+
+\end{document}

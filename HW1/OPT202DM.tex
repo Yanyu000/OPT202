@@ -1,0 +1,69 @@
+\documentclass[12pt]{article}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage[margin=1in,footskip=0.25in]{geometry}
+\usepackage{hyperref}
+\usepackage[utf8]{inputenc}
+\title{OP202 Homework}
+\author{Yanyu ZHOU}
+\date{\today}
+\begin{document}
+\maketitle
+\section{}
+\textbf{Lemma 3: }Function $f$ belongs to $\mathcal{C}^{2,1}_L(\mathbf{R}^n)$ if and only if
+$$|| \nabla^2 f(x) ||\leq L, \quad \forall x\in\mathbf{R}^n.$$
+\textbf{Proof:} 
+
+For one direction, if $f \in \mathcal{C}^{2,1}_L(\mathbf{R}^n)$, we have
+\begin{itemize}\label{C21}
+    \item $f$ is 2 times continuously differentiable in $\mathbf{R}^n$.
+    \item its first derivative is Lipschitz continuous in $\mathbf{R}^n$ with the constant $L$: $$||\nabla f(y)-\nabla f(x)||\leq L||y-x|| .$$
+\end{itemize}
+Thus, by the definition of derivative and Lipschitz condition, for any $s \in \mathbf{R}^n, \alpha \in \mathbf{R}^+$ we have
+$$||(\int\limits_0^\alpha \nabla^2f(x+\tau s)d\tau )s|| = ||\nabla f(x+\alpha s)-\nabla f(x)|| \leq \alpha L||s||.$$
+Taking the limit of $\alpha$ to 0, we obtain: 
+$$\lim_{\alpha \rightarrow 0} \frac{||\nabla f(x+\alpha s)-\nabla f(x)||}{\alpha} \leq  L||s||,$$
+$${\boxed{  || \nabla^2 f(x) ||\leq L}}.$$
+
+
+For the other direction, by Mean value theorem, $\forall x,y \in \mathbf{R}^n$
+$$\nabla f(y) =  \nabla f(x) + \int\limits_0^1 <\nabla^2f(x+ \tau (y-x)), y-x > d \tau $$
+Thus, with the condition that the second derivative of $f$ is bounded, 
+\begin{equation}
+\begin{split}
+||\nabla f(y)-\nabla f(x)|| &= ||\int\limits_0^1 <\nabla^2f(x+ \tau (y-x)), y-x > d \tau ||\\
+    & \leq  \int\limits_0^1 ||<\nabla^2f(x+ \tau (y-x)), y-x > ||d \tau\\
+    & \underset{\text{C.S.}}{\leq} \int\limits_0^1 ||\nabla^2f(x+ \tau (y-x)) ||\  ||y-x|| d \tau\\
+    & \leq \int\limits_0^1 ||\nabla^2f(x+ \tau (y-x)) ||  d \tau||y-x|| \leq L||y-x|| 
+\end{split}
+\end{equation}
+
+\textbf{Corollary: }Function $f$ belongs to $\mathcal{C}^{p+1,p}_L(\mathbf{R}^n)$ if and only if
+$$|| \nabla^{p+1} f(x) ||\leq L, \quad \forall x\in\mathbf{R}^n.$$
+
+\textbf{Proof:} 
+For one direction, if $f \in \mathcal{C}^{p+1,p}_L(\mathbf{R}^n)$, for any $s \in \mathbf{R}^n, \alpha >0$ we have
+$$||(\int\limits_0^\alpha \nabla^{p+1}f(x+\tau s)d\tau )s|| = ||\nabla^p f(x+\alpha s)-\nabla^p f(x)|| \leq \alpha L||s||.$$
+Taking the limit of $\alpha$ to 0, we obtain: 
+$$\lim_{\alpha \rightarrow 0} \frac{||\nabla^p f(x+\alpha s)-\nabla^p f(x)||}{\alpha} \leq  L||s||,$$
+$${\boxed{  || \nabla^{p+1} f(x) ||\leq L}}.$$
+
+For the other direction, $\forall x,y \in \mathbf{R}^n$
+$$\nabla^p f(y) =  \nabla^p f(x) + \int\limits_0^1 <\nabla^{p+1}f(x+ \tau (y-x)), y-x > d \tau $$
+Thus, 
+\begin{equation}
+\begin{split}
+||\nabla^p f(y)-\nabla^p f(x)|| &= ||\int\limits_0^1 <\nabla^{p+1}f(x+ \tau (y-x)), y-x > d \tau ||\\
+    & \leq  \int\limits_0^1 ||<\nabla^{p+1}f(x+ \tau (y-x)), y-x > ||d \tau\\
+    & \underset{\text{C.S.}}{\leq} \int\limits_0^1 ||\nabla^{p+1}f(x+ \tau (y-x)) ||\  ||y-x|| d \tau\\
+    & \leq \int\limits_0^1 ||\nabla^{p+1}f(x+ \tau (y-x)) ||  d \tau||y-x|| \leq L||y-x|| 
+\end{split}
+\end{equation}
+
+\textbf{Remark: } 
+\begin{itemize}
+    \item The Lipschitz condition actually comes many time from the Mean value theorem:
+    $$||f(y)- f(x)||\leq ||\nabla f((1-\tau)x+\tau y)||\ ||y-x||.$$
+    \item $\nabla f$ is a vector, $\nabla^2 f$ is a Hessian matrix, $\nabla^p f $ is a tensor when $p \geq 3$.
+\end{itemize}
+\end{document}

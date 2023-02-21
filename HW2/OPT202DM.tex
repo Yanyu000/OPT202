@@ -1,0 +1,190 @@
+\documentclass[12pt]{article}
+\usepackage{lipsum}
+\usepackage{amsmath}
+\usepackage{amsthm}
+
+\newtheoremstyle{mystyle}%                % Name
+  {}%                                     % Space above
+  {}%                                     % Space below
+  {\itshape}%                             % Body font
+  {}%                                     % Indent amount
+  {\bfseries}%                            % Theorem head font
+  {.}%                                    % Punctuation after theorem head
+  { }%                                    % Space after theorem head, ' ', or \newline
+  {}%                                     % Theorem head spec (can be left empty, meaning `normal')
+
+\theoremstyle{mystyle}
+\newtheorem{theorem}{Theorem}
+
+\usepackage{graphicx}
+\usepackage[margin=1in,footskip=0.25in]{geometry}
+\usepackage{hyperref}
+\usepackage[utf8]{inputenc}
+\title{OP202 HW2}
+\author{Yanyu ZHOU}
+\date{\today}
+
+\begin{document}
+\maketitle
+\section{Convec function}
+\begin{theorem}[19]
+\label{19}
+    Function $f$ : $X \subset \mathbf{R}^n \rightarrow \mathbf{R}$ is convex and belongs to $\mathcal{C}^1(X)$ iff 
+    $\forall x,y \in X$, $f(x) \geq f(y) + \langle \nabla f(y), x - y \rangle$.
+\end{theorem}
+
+\textbf{Proof:} 
+We denote $x_\lambda = \lambda x + (1-\lambda)y$.
+For one direction, if $f$ is convex and $f \in \mathcal{C}^1$, for some $\lambda \in [0,1)$, we have
+\begin{equation*}
+\begin{split}
+    f(x_\lambda) &\leq \lambda f(x) + (1-\lambda) f(y)\\
+    f(x) &\geq \frac{f(x_\lambda)}{\lambda} - \frac{1-\lambda}{\lambda}f(y) = \frac{f(\lambda x + (1-\lambda)y)-f(y)}{\lambda} + f(y).
+\end{split}
+\end{equation*}
+Takeing the limit of $\lambda$ to 0, by the definition of derivative, we obtain:
+$$f(x) \geq f(y) + \lim\limits_{\lambda \rightarrow 0} \frac{f(\lambda x + (1-\lambda)y)-f(y)}{\lambda} = f(y) + \langle \nabla f(y), x-y \rangle$$
+
+For the other direction, if $\forall x,y \in X$, $f(x) \geq f(y) + \langle \nabla f(y), x - y \rangle$, subtituding $y$ with $x_\lambda$, we have
+\begin{equation*}
+\begin{split}
+    f(x) \geq f(x_\lambda) + \langle \nabla f(x_\lambda), x - x_\lambda \rangle\\
+    f(y) \geq f(x_\lambda) + \langle \nabla f(x_\lambda), y - x_\lambda \rangle
+\end{split}
+\end{equation*}
+\begin{center}
+$\Downarrow$ 
+\end{center}
+\begin{equation*}
+\begin{split}
+        f(x_\lambda) &\leq f(x) + \langle \nabla f(x_\lambda), x_\lambda - x\rangle = f(x) + (\lambda-1)\langle \nabla f(x_\lambda), x-y\rangle\\
+        f(x_\lambda) &\leq f(y) + \langle \nabla f(x_\lambda),x_\lambda - y\rangle= f(y) + \lambda\langle \nabla f(x_\lambda), x-y\rangle
+\end{split}
+\end{equation*}
+Mutilplying the first inquality by $\lambda$ and the second one by $1-\lambda$, we obtain
+\begin{equation*}
+\begin{split}
+        \lambda f(x_\lambda ) &\leq \lambda f(x) + \lambda(\lambda-1) \langle \nabla f(x_\lambda), x-y\rangle\\
+        (1-\lambda)f(x_\lambda) &\leq (1-\lambda)f(y) + \lambda(1-\lambda)\langle \nabla f(x_\lambda), x-y\rangle
+\end{split}
+\end{equation*}
+Addind the two inqualities together, we get $f(x_\lambda) \leq \lambda f(x) + (1-\lambda) f(y)$.
+
+\begin{theorem}[20]
+    \label{20}
+    Function $f$ : $X \subset \mathbf{R}^n \rightarrow \mathbf{R}$ is convex and belongs to $\mathcal{C}^2(X)$ iff 
+    $\forall x,y \in X$, $\nabla^2 f(x) \succeq 0$.
+\end{theorem}
+\textbf{Proof:} For one direction, if $f \in \mathcal{C}^2(X)$ is convex, by\ref{19}, we have
+$$f(x) \geq f(y) + \langle \nabla f(y), x - y \rangle,\quad f(y) \geq f(x) + \langle \nabla f(x), x - y \rangle.$$
+Adding them together, we get
+\begin{equation}
+    \langle \nabla f(x) - \nabla f(y), x-y\rangle \geq 0. 
+\end{equation}
+We denote $x_\tau = x+ \tau s$, $\tau >0$, $s \in \mathbf{R}^n$, then obtain
+$$0 \leq \frac{1}{\tau}\langle \nabla f(x_\tau) - \nabla f(x), x_\tau-x\rangle = \frac{1}{\tau}\langle \nabla f(x_\tau) - \nabla f(x), s\rangle= \frac{1}{\tau}\int\limits_0^\tau \langle \nabla^2 f(x+\lambda s)s, s\rangle d\lambda$$
+Takeing the limit of $\tau$ to 0, by the definition of derivative, we obtain:
+$$0 \leq\lim\limits_{\tau \rightarrow 0} \frac{1}{\tau}\int\limits_0^\tau \langle \nabla^2 f(x+\lambda s)s, s\rangle d\lambda = \nabla^2 f(x)$$
+
+For the other direction, if $\forall x,y \in X$, $\nabla^2 f(x) \succeq 0$, we fix $y$, by Taylor's Theorem with integral remainder and the Fundamental Theorem of Calculus, then obtain:
+\begin{equation*}
+\begin{split}
+        f(y) &= f(x) + \langle \nabla f(x) , y-x\rangle + \int\limits_0^1\int\limits_0^\tau \langle \nabla^2 f(x+ \lambda (y-x))(y-x), y-x\rangle\\
+             &\geq f(x) + \langle \nabla f(x) , y-x\rangle.
+\end{split}
+\end{equation*}
+
+\section{Strongly Convex function}
+\begin{theorem}[21]
+    Function $f$ : $X \subset \mathbf{R}^n \rightarrow \mathbf{R}$ is m-strongly convex and belongs to $\mathcal{C}^1(X)$ iff 
+    $\forall x,y \in X$, $ \langle \nabla f(x) - \nabla f(y), x - y\rangle \geq m||x-y||^2$.
+\end{theorem}
+
+\textbf{Proof:} 
+For one direction, let $f$ be m-strongly convex, then by definition $g(x) =  f(x) - \frac{m}{2}||x||^2$ is convex and $\nabla g(x) = \nabla f(x) - mx$. 
+By monotinicty condition for convexity we have:
+\begin{equation*}
+\begin{split}
+    0 &\leq \langle \nabla g(x) - \nabla g(y), x-y \rangle\\
+    0 &\leq \langle \nabla f(x) - mx - (\nabla f(y) - my), x - y \rangle\\
+    0 &\leq \langle \nabla f(x)- \nabla f(y) , x - y \rangle - \langle mx - my, x - y \rangle\\
+    m||x-y||^2 &\leq \langle \nabla f(x)- \nabla f(y),x-y \rangle.
+\end{split}
+\end{equation*}
+
+For the another direction, suppose $f$ satisfies that $\forall x,y \in X$, $ \langle \nabla f(x) - \nabla f(y), x - y\rangle \geq m||x-y||^2$.
+Since $f, g \in \mathcal{C}^1(X)$, by \ref{19} it's equivalent to prove that $g(x) \geq g(y) + \langle \nabla g(y), x - y \rangle$.
+Using Lemma 2.1.3 of Nesterov's book, we can prove it.
+
+\begin{theorem}[22]
+    Function $f$ : $X \subset \mathbf{R}^n \rightarrow \mathbf{R}$ is m-strongly convex and belongs to $\mathcal{C}^2(X)$ iff 
+    $\forall x,y \in X$, $ \nabla^2 f(x) \succeq mI_n$.
+\end{theorem}
+
+\textbf{Proof: }For one direction, let $f$ be m-strongly convex, then by definition $g(x) =  f(x) - \frac{m}{2}||x||^2$ is convex and $\nabla g(x) = \nabla f(x) - mx$. 
+Since $f,g \in \mathcal{C}^2(X)$, by \ref{20}, $\nabla^2 g(x) \succeq 0$, i.e,. $\nabla^2 f(x) - mI_n \succeq 0$.
+
+For the another direction, suppose$\nabla^2 g(x) \succeq 0$, by Lemma 2.1.4 of Nesterov's book, we can prove $g \in \mathcal{C}^2(X)$, so does $f$, and g is convex.
+
+\section{Smooth function}
+\begin{theorem}[23,24]
+    For a convex function $f$ : $X \subset \mathbf{R}^n \rightarrow \mathbf{R}$, the following statements are equivalent:
+    \begin{enumerate}
+        \item $f$ is L-smooth.
+        \item $\forall x,y \in X$, $||\nabla f(x) -\nabla f(y) || \leq  L||x-y||$
+        \item Lower bound: $f(y) \geq f(x) + \langle \nabla f(x), y - x \rangle + \frac{1}{2L}||\nabla f(x) - \nabla f(y)||^2$ 
+        \item Co-coercivity: $\forall x,y \in X$, $\frac{1}{L}||\nabla f(x) -\nabla f(y) ||^2 \leq \langle \nabla f(x) - \nabla f(y), x - y\rangle$
+    \end{enumerate}
+\end{theorem}
+
+\textbf{Proof:} 
+
+Let $f$ be L-smooth, then by definition $g(x) = \frac{L}{2}||x||^2 - f(x)$ is convex and $\nabla g(x) = Lx - \nabla f(x)$. By \ref{19} we have:
+\begin{equation}
+\begin{split}
+    g(x) &\geq g(y) + \langle \nabla g(y), x - y \rangle\\
+    \frac{L}{2}||x||^2 - f(x) &\geq \frac{L}{2}||y||^2 - f(y) + \langle \nabla (\frac{L}{2}||y||^2 - f(y)), x - y \rangle \\
+    &=\frac{L}{2}||y||^2 - f(y) + \langle Ly - \nabla f(y), x - y \rangle\\
+    &= Lxy - \frac{L}{2}||y||^2 - f(y) - \langle \nabla f(y), x - y \rangle\\
+    f(x) &\leq \frac{L}{2}(||x||^2+||y||^2 - 2Lxy) + f(y) + \langle \nabla f(y), x - y \rangle\\ 
+    &\leq \frac{L}{2}(||x-y||^2) + f(y) + \langle \nabla f(y), x - y \rangle
+\end{split}
+\end{equation}
+
+1 $\Rightarrow$ 3:
+We define: $h(x) = f(x) - \langle x, \nabla f(\xi)\rangle$ which is convex with a global minimum at $\xi$. Then:
+$$h(\xi) \leq h(x -\frac{1}{L}\nabla h(x)) \leq h(x) + \langle \nabla h(x), -\frac{1}{L}\nabla h(x)\rangle + \frac{L}{2}||-\frac{1}{L}\nabla h(x)||^2 \leq h(x) - \frac{1}{2L}||\nabla h(x)||^2$$
+\begin{center}
+$\Downarrow \nabla h(x) = \nabla f(x) - \nabla f(\xi)$ 
+\end{center}
+$$f(\xi) - \langle \xi, \nabla f(\xi)\rangle \leq f(x) - \langle x, \nabla f(\xi)\rangle - \frac{1}{2L}||\nabla f(x) - \nabla f(\xi)||^2$$ 
+
+%By Nesterov, Lemma 1.2.3, for any $x, y$ from $\mathbf{R}^n$ we have:
+%\begin{equation}\label{}
+%    |f(y) - f(x) -  \langle \nabla f(x) , y - x\rangle| \leq \frac{L}{2}||y - x||^2.
+%\end{equation}
+3 $\Rightarrow$ 4: Applying 3 twice for $(x,y)$ and $(y,x)$, and sum to get
+$$0 \geq \frac{1}{L}||\nabla f(x) -\nabla f(y) ||^2 + \langle \nabla f(x) - \nabla f(y), y - x\rangle$$
+
+4 $\Rightarrow$ 2: By generalized Cauchy-Schwart, we have
+$$||\nabla f(x) -\nabla f(y) ||^2 \leq L \langle \nabla f(x) - \nabla f(y), x - y\rangle \leq L^2||x-y||^2,$$
+thus,
+$$||\nabla f(x) -\nabla f(y) || \leq  L||x-y||.$$
+
+\begin{theorem}[22]
+    A convex function $f$ : $X \subset \mathbf{R}^n \rightarrow \mathbf{R}$ is L-smooth and belongs to $\mathcal{C}^2(X)$ iff 
+    $\forall x,y \in X$, $ 0 \preceq \nabla^2 f(x) \preceq LI_n$.
+\end{theorem}
+\textbf{Proof:} 
+Since $f$ is convex, we have $0 \preceq \nabla^2 f(x)$.
+Since $f \in \mathcal{C}^{2,1}_L$, by Lemma 3 in first class, $|| \nabla^2 f(x) ||\leq L$, therefore, $\nabla^2 f(x) \preceq LI_n$.
+
+\section{Nesterov's gradient}
+\textbf{Question: }For Nesterov's accelerated gradient methood, when $\alpha \leq \frac{1}{L}$, do we have the following statements?
+\begin{itemize}
+    \item the global convergence is of rate $O(\frac{1}{t^2})$. Yes, because this method provides an optimal convergence rate for smooth convex functions. 
+    \item better than in the non-convex case. Yes, because for non-convex cases, the convergence rate is $O(\frac{1}{\sqrt{t}})$.
+\end{itemize}
+
+\textbf{Remark: } The Homeowrk 2 is too much. I spent at least 10 hours on it.
+\end{document}
