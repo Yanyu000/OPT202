@@ -1,5 +1,5 @@
 # Fdb version 3
-["pdflatex"] 1677000288 "c:/Users/Yanyu/Documents/ENSTA/2A/OPT202/HW3/OPT202DM.tex" "OPT202DM.pdf" "OPT202DM" 1677000289
+["pdflatex"] 1677020720 "c:/Users/Yanyu/Documents/ENSTA/2A/OPT202/HW3/OPT202DM.tex" "OPT202DM.pdf" "OPT202DM" 1677020721
   "C:/Users/Yanyu/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map" 1675595904 84812 0688699d308e27e7b92cfc00f2023665 ""
   "C:/Users/Yanyu/AppData/Local/MiKTeX/fonts/pk/ljfour/jknappen/ec/dpi600/tcrm1200.pk" 1639234776 14064 2597b84c315c693cf105ce851d73c8db ""
   "C:/Users/Yanyu/AppData/Local/MiKTeX/miktex/data/le/pdftex/pdflatex.fmt" 1639234519 9769968 ec427531d717e0af440e36517cd09481 ""
@@ -91,10 +91,10 @@
   "C:/Users/Yanyu/AppData/Local/Programs/MiKTeX/tex/latex/refcount/refcount.sty" 1576433952 9878 9e94e8fa600d95f9c7731bb21dfb67a4 ""
   "C:/Users/Yanyu/AppData/Local/Programs/MiKTeX/tex/latex/rerunfilecheck/rerunfilecheck.sty" 1575571282 9715 b051d5b493d9fe5f4bc251462d039e5f ""
   "C:/Users/Yanyu/AppData/Local/Programs/MiKTeX/tex/latex/url/url.sty" 1388490452 12796 8edb7d69a20b857904dd0ea757c14ec9 ""
-  "OPT202DM.aux" 1677000289 1122 bee61d6f535a97bceefb3ce9f87ed7ca "pdflatex"
-  "OPT202DM.out" 1677000289 212 33cdfb4031595ef1d48bce2c1318826d "pdflatex"
-  "OPT202DM.tex" 1677000288 4165 134d132e9e5d937442b6ffd9b5122d5a ""
-  "c:/Users/Yanyu/Documents/ENSTA/2A/OPT202/HW3/OPT202DM.tex" 1677000288 4165 134d132e9e5d937442b6ffd9b5122d5a ""
+  "OPT202DM.aux" 1677020721 1212 2e8cc14d04a80cf94c5bbb801a15b5a7 "pdflatex"
+  "OPT202DM.out" 1677020721 212 fb051661a62d3a3817458be505d86feb "pdflatex"
+  "OPT202DM.tex" 1677020720 7679 152b4a616b338ee46e83195adb8ff2d3 ""
+  "c:/Users/Yanyu/Documents/ENSTA/2A/OPT202/HW3/OPT202DM.tex" 1677020720 7679 152b4a616b338ee46e83195adb8ff2d3 ""
   (generated)
   "OPT202DM.aux"
   "OPT202DM.log"

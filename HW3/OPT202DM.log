@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (MiKTeX 21.12.10) (preloaded format=pdflatex 2021.12.11)  21 FEB 2023 18:24
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (MiKTeX 21.12.10) (preloaded format=pdflatex 2021.12.11)  22 FEB 2023 00:05
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -347,23 +347,28 @@ LaTeX Info: Redefining \nameref on input line 34.
 pdfTeX warning (ext4): destination with the same identifier (name{equation.1.1}) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.83 $$
-       ] [2] (OPT202DM.aux)
+l.86     $$
+           
+pdfTeX warning (ext4): destination with the same identifier (name{equation.1.1}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.86     $$
+           ] [2] [3] [4] (OPT202DM.aux)
 Package rerunfilecheck Info: File `OPT202DM.out' has not changed.
-(rerunfilecheck)             Checksum: 33CDFB4031595EF1D48BCE2C1318826D;212.
+(rerunfilecheck)             Checksum: FB051661A62D3A3817458BE505D86FEB;212.
  ) 
 Here is how much of TeX's memory you used:
- 9924 strings out of 478659
- 161693 string characters out of 2845919
- 557719 words of memory out of 3000000
- 27891 multiletter control sequences out of 15000+600000
+ 9933 strings out of 478659
+ 161779 string characters out of 2845919
+ 559775 words of memory out of 3000000
+ 27893 multiletter control sequences out of 15000+600000
  410721 words of font info for 52 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 68i,6n,77p,286b,327s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 68i,10n,77p,286b,419s stack positions out of 5000i,500n,10000p,200000b,80000s
  <C:\Users\Yanyu\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tcrm1200.pk><C:/Users/Yanyu/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Users/Yanyu/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx8.pfb><C:/Users/Yanyu/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Users/Yanyu/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi12.pfb><C:/Users/Yanyu/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi6.pfb><C:/Users/Yanyu/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi8.pfb><C:/Users/Yanyu/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Users/Yanyu/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr17.pfb><C:/Users/Yanyu/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr6.pfb><C:/Users/Yanyu/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr8.pfb><C:/Users/Yanyu/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/Yanyu/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy8.pfb><C:/Users/Yanyu/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmti12.pfb>
-Output written on OPT202DM.pdf (2 pages, 152584 bytes).
+Output written on OPT202DM.pdf (4 pages, 165264 bytes).
 PDF statistics:
- 108 PDF objects out of 1000 (max. 8388607)
- 10 named destinations out of 1000 (max. 500000)
+ 124 PDF objects out of 1000 (max. 8388607)
+ 17 named destinations out of 1000 (max. 500000)
  33 words of extra memory for PDF output out of 10000 (max. 10000000)
 

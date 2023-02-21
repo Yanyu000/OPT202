@@ -39,6 +39,7 @@ Consider
 \tag{$PC$} 
     \min _{x \in X} f(x)
 \end{equation}
+
 \begin{center}
     $\Updownarrow$
 \end{center}
@@ -46,10 +47,13 @@ Consider
     \tag{$\mathrm{PS}^{\prime}$}
     \min _{x \in \mathbf{R}^n} f(x)+\iota_X(x)
 \end{equation}
-where $\iota_X(x)$ is a indicator function. When $x\in X$, $\iota_X(x) = 1$, else $\iota_X(x) = \infty$.
+where $\iota_X(x)$ is an indicator function. When $x\in X$, $\iota_X(x) = 1$, else $\iota_X(x) = \infty$.
 
-\textbf{Proof:}$\partial \iota_X(x) \equiv N_X(x)$
+\begin{thm}
+    $\partial \iota_X(x) \equiv N_X(x)$
+\end{thm}
 
+\begin{proof}
 For \eqref{PC}, the necessary and sufficient conditions for optimality is
 $$
 \partial f\left(x^*\right)+N_X\left(x^*\right) \ni \mathbf{0}
@@ -59,6 +63,7 @@ $y$ such that $y^T(x-x_0) \geq 0$ for all $x \in \mathbf{X}$.
 
 By definition, $\partial \iota_X(x) = \{g \in \mathbf{R}^n: g^Tx \geq g^Ty \quad \forall y\in \mathbf{X} \}$.
 Therefore, $\partial \iota_X(x) \equiv N_X(x)$.
+\end{proof}
 
 \section{Q2}
 Work out one of the proofs of Theorem 17 (the simplest one is $f_1 \in \mathbf{S}^{1,1}_{m,L}$).
@@ -67,38 +72,98 @@ Here we prove that Theorem 12 in class 2 is also valid for the proximal gradient
 For $f(x) = f_1(x) + f_2(x)$, we assume that 
 \begin{itemize}
     \item $f_1$ is convex and at least $f_1 \in \mathbf{S}^{1,1}_{0,L}$
-    \item $f_2$ is convex, $\operatorname{prox}_{\alpha h} (x)=\arg \min\limits_z\left\{\frac{\|x-z\|^2}{2 \alpha}+h(z)\right\}$ can be evaluated.
+    \item $f_2$ is convex, $\operatorname{prox}_{\alpha h} (x)=\arg \min\limits_z\left\{\frac{\|x-z\|^2}{2 \alpha}+f_2(z)\right\}$ can be evaluated.
 \end{itemize}
 
 \textbf{Notation: }The update step of proximal gradient method can be written as
-$$x_k = x_{k-1} - t_kG_{t_k}(x_{k-1})$$ 
-where $G_t(x)$ is the generalized gradient and is given by 
-$$G_t(x)= \frac{x- \operatorname{prox}_t (x - t\nabla f_1(x))}{t}.$$
+$$x_k = x_{k-1} - \alpha G_{\alpha_k}(x_{k-1})$$ 
+where $G_\alpha (x)$ is the generalized gradient and is given by 
+$$G_\alpha (x)= \frac{x- \operatorname{prox}_\alpha (x - \alpha \nabla f_1(x))}{\alpha}.$$
 
-Then the following holds:\\
-\textbf{Theorem:} The proximal gradient method with constant step size $\alpha \leq \frac{2}{L}$
-has an ergodic(global) convergence certificate of 
-$$
-f\left(\bar{x}_t\right)-f\left(x^*\right) \leq \frac{C}{t+1}\left\|x_0-x^*\right\|^2
-$$
-for $\bar{x}_t=\frac{1}{t+1} \sum_{k=0}^t x_k, \text { and } C>0$.
-
-\textbf{Proof:}
+\begin{thm}The proximal gradient method with constant step size $\alpha \leq \frac{2}{L}$ satisfies
+    $$
+    f\left(x_k\right)-f\left(x^*\right) \leq \frac{\left\|x_0-x*\right\|^2}{2 \alpha k}
+    $$
+where $x^*$ is the optimal solution.
+\end{thm}
+\begin{proof}
 We begin by showing that 
 $$f(y) \leq f_1(x) + \nabla g(x)^T(y-x) + \frac{L}{2}\left\|y-x\right\|^2 + f_2(y) \quad \forall x,y.$$
-Since $\nabla f_1$ is Lipschitz with constant L, $\nabla^2 f_1 $
+Since $f_1 \in \mathbf{S}^{1,1}_{0,L}$, by Taylor's expansion
+\begin{align*}
+    f_1(y) &= f_1(x)+ f_1(x)^T(y-x) + \frac{1}{2}(x-y)^T\nabla^2f_1(x)(x-y)\\
+    &\leq f_1(x) + f_1(x)^T(y-x)  + \frac{L}{2} \left\|y-x\right\|^2
+\end{align*}
+Therefore
+$$f(y) = f_1(y) + f_2(y) \leq f_1(x) + f_1(x)^T(y-x)  + \frac{L}{2} \left\|y-x\right\|^2 + f_2(y) .$$
+Substituting $y = x_k = x_{k-1} - \alpha G_\alpha (x_{k-1}), x = x_{k-1}$ we have 
+\begin{equation}\label{f1con}
+    f(x_k) \leq f_1(x_{k-1}) - \alpha f_1(x_{k-1})^TG_\alpha (x_{k-1})  + \frac{L\alpha^2}{2} \left\|G_\alpha \right\|^2 + f_2(x_{k-1} - tG_\alpha(x_{k-1})) 
+\end{equation}
+
+Now 
+\begin{align*}
+    x_{k-1} - \alpha G_\alpha(x_{k-1}) &= \arg \min\limits_z\left\{\frac{\|x_k-z\|^2}{2 \alpha}+f_2(z)\right\}\\
+    &= \arg \min\limits_z\left\{\frac{\|x_{k-1} - \alpha \nabla f_1(x_{k-1}) -z\|^2}{2 \alpha}+f_2(z)\right\}\\
+    &= \arg \min\limits_z \left\{\frac{\|x_{k-1}^2 -z\|^2}{2 \alpha}+ \nabla f_1^T(z- x_{k-1})+ f_2(z)\right\}
+\end{align*}
+This implies that there exist a $\nu \in \partial f_2(z)$, $f_2(y) \geq f_2(z) + \nu^T(y-z),\ \forall y$, such that at minima $\nabla f_1(x) + \frac{1}{\alpha} (z-x) + \nu =0$,
+but the minimum occurs at $z = x_{k-1} - \alpha G_\alpha (x_{k-1})$, thus
+\begin{align*}
+\nabla f_1(x_{k-1}) - G_\alpha (x_{k-1}) + \nu = 0, \nu \in \partial f_2(x_{k-1} - \alpha G_\alpha (x_{k-1}))\\
+G_\alpha(x_{k-1}) - \nabla f_1(x_{k-1}) \in \partial f_2(x_{k-1} - \alpha G_\alpha (x_{k-1}))
+\end{align*}
+
+Since $f_2$ is convex, 
+\begin{equation}\label{f2con}
+    \begin{aligned}
+    & f_2(x) \geq f_2\left(x_{k-1} - \alpha G_\alpha (x)\right)+\left(G_\alpha(x_{k-1})-\nabla f_1(x_{k-1})\right)^T \alpha G_t(x_{k-1}) \\
+    & f_2\left(x_{k-1}- \alpha G_\alpha (x_{k-1})\right) \leq f_2(x_{k-1})-\alpha \left(G_\alpha (x_{k-1})-\nabla g(x_{k-1})\right)^T G_\alpha(x_{k-1})
+    \end{aligned}
+    \end{equation}
+
+Substituting \eqref{f2con} in \eqref{f1con} we get
+\begin{equation*}
+    f(x_k) \leq f(x_{k-1}) - (1 - \frac{L \alpha^2}{2})\alpha \left\|G_\alpha(x_{k-1}) \right\|^2 
+\end{equation*}
+
+Since $f$ is convex as well, $f(x_{k-1}) \leq f\left(x^*\right)+G_\alpha (x_{k-1})^T\left(x_{k-1}-x^*\right)$, substituting it above we geometry
+\begin{align*}
+    f(x_k) &\leq f\left(x^*\right)+G_\alpha (x_{k-1})^T\left(x_{k-1}-x^*\right) - (1 - \frac{L \alpha^2}{2})\alpha \left\|G_\alpha(x_{k-1}) \right\|^2 \\
+    &\leq f\left(x^*\right)+G_\alpha (x_{k-1})^T\left(x_{k-1}-x^*\right) -  \frac{ \alpha^2}{2} \left\|G_\alpha(x_{k-1}) \right\|^2\\
+    &= f\left(x^*\right)+ \frac{1}{2\alpha} (\left\|x_{k-1} - x^* \right\|^2 - \left\|x_k - x^* \right\|^2 )
+\end{align*}
+\end{proof}
+
+Summing over iteration we have:
+\begin{equation}
+    \begin{aligned}
+    \sum_{i=1}^k\left(f\left(x_i-f\left(x^*\right)\right)\right. & \leq \frac{1}{2 \alpha}\left(\left\|x_0-x^*\right\|^2-\left\|x_k-x^*\right\|^2\right) \\
+    & \leq \frac{1}{2 \alpha}\left\|x_0-x^*\right\|^2.
+    \end{aligned}
+    \end{equation}
+
+Since the difference is non-increasing we have
+\begin{equation}
+f\left(x_k\right)-f\left(x^*\right) \leq \frac{1}{k} \sum_{i=1}^k f(x_i-f\left(x^*\right) ) \leq \frac{1}{2 \alpha k}\left\|x_0-x^*\right\|^2.
+\end{equation}
 
 \textbf{Remark:} 
 \begin{itemize}
     \item This has the same convergence rate $O(\frac{1}{t})$ as that of gradient descent.
 \end{itemize}
 
-\section{Q2}
-Depending on $f$, you can derive conditions for which the dual ascent is converging depending on $\alpha$ and $f$ you can have linear convergence, or $O(1 / t), O\left(1 / t^2\right), O(1 / \sqrt{t}) \ldots$
-
 \section{Q3}
+Depending on $f$, you can derive conditions for which the dual ascent is converging depending on $\alpha$ and $f$ you can have linear convergence, or $O(1 / t), O\left(1 / t^2\right), O(1 / \sqrt{t}) \ldots$
+\begin{itemize}
+    \item If $f$ is m-strongly convex, then the dual ascent with constant step size $\alpha = m$ converges with the rate of $O(1/t)$.
+    \item If $f \in \mathbf{S}^{1,1}_{m,L}$, then the dual ascent with step size $\alpha = \frac{2}{1/m + 1/L}$ converges with the rate of $O(\log (1/t))$.
+\end{itemize}
+\section{Q4}
 Homework. Can you think of a dual Newton’s method? Can you think of a
 dual proximal method? When would you apply these methods and with
 which guarantees?
+
+
 
 \end{document}
