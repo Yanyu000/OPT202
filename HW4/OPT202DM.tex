@@ -1,0 +1,57 @@
+\documentclass[12pt]{article}
+\usepackage{lipsum}
+\usepackage{amsmath}
+\usepackage{amsthm}
+
+\newtheoremstyle{mystyle}%                % Name
+  {}%                                     % Space above
+  {}%                                     % Space below
+  {\itshape}%                             % Body font
+  {}%                                     % Indent amount
+  {\bfseries}%                            % Theorem head font
+  {.}%                                    % Punctuation after theorem head
+  { }%                                    % Space after theorem head, ' ', or \newline
+  {}%                                     % Theorem head spec (can be left empty, meaning `normal')
+
+\theoremstyle{mystyle}
+\newtheorem{thm}[equation]{Theorem}
+\newtheorem{cor}[equation]{Corollary}
+\newtheorem{lemma}[equation]{Lemma}
+\newtheorem{prop}[equation]{Proposition}
+\newtheorem{conj}[equation]{Conjecture}
+\newtheorem{definition}[equation]{Definition}
+\newtheorem{remark}[equation]{Remark}
+\newtheorem{example}[equation]{Example}
+
+\usepackage{graphicx}
+\usepackage[margin=1in,footskip=0.25in]{geometry}
+\usepackage{hyperref}
+\usepackage[utf8]{inputenc}
+\title{OP202 HW}
+\author{Yanyu ZHOU}
+\date{\today}
+
+\begin{document}
+\maketitle
+\section{Q1}
+\begin{example}
+   $ -\log(x)$ is self-confordant on its own domain but not strongly convex.
+\end{example}
+
+\begin{proof}
+    Let $f(x) = -\log(x), x >0$, then $f^\prime (x) = -\frac{1}{x}$, $f^{\prime \prime} (x) = x^{-2}$, $f^{\prime \prime \prime} (x) = -2x^{-3}$.
+    Since $2x^{-3} \leq 2x^{-3}$, $|-2x^{-3}| \leq f^{\prime \prime} (x)^{\frac{3}{2}}$.
+
+    Also, if there exists a $m > 0 $ such that $f$ is m-strongly convex, we have $f^{\prime \prime} (x) \geq m\text{In}$. It's impossible since $x>0$.
+\end{proof}
+\section{Q2}
+\begin{thm}
+All positive semi-definite matrices form a convex set.
+\end{thm}
+
+\begin{proof}
+    Let A, B be two positive semi-definite matrices, $\lambda \in [0,1]$. Then we have
+    $$x^T [\lambda A + (1-\lambda)B]x = x^T(\lambda Ax + (1-\lambda)Bx) = \lambda x^T Ax+ (1-\lambda)x^TBx \geq 0.$$
+\end{proof}
+
+\end{document}
